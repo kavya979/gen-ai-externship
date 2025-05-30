@@ -1,16 +1,3 @@
-'''
-Task 2 - Operators: Playing with Numbers
-We all love some math, don't we? Okay, maybe not everyone, but trust me, this will be easy and fun!
-
-Pick two numbers, let's say num1 and num2 (you choose the values!).
-Perform the following operations on these numbers:
-Addition
-Subtraction
-Multiplication
-Division
-Write your Python code to calculate and display the results with a nice message for each.
-
-'''
 num_1 = 56 # First number
 num_2 = 43 # Second number
 # Addition of the two numbers
