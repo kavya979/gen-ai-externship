@@ -1,0 +1,3 @@
+ERROR:root:ZeroDivisionError occurred: division by zero
+ERROR:root:ValueError occurred: invalid literal for int() with base 10: 'h'
+ERROR:root:ZeroDivisionError occurred: division by zero

@@ -1,48 +1,36 @@
-'''
-Step 1: Menu of Operations
-Create a program that displays a menu with the following operations:
+import logging
 
-Addition
-Subtraction
-Multiplication
-Division
-Exit
-The user should select an option by entering a number.
+logging.basicConfig(filename='error_log.txt', level=logging.ERROR)
 
-Step 2: Input Validation
-Add input validation to ensure the user enters numbers only for the calculations. If the input is invalid, catch the exception and prompt the user again.
+def main():
+    while True:
+        try:
+            n = int(input("Choose an operation: \n1.Addition \n2.Subtraction \n3.Multiplication \n4.Division \n5.Exit \n"))
+            if n<5:
+                n1=int(input("Enter the first number: "))
+                n2=int(input("Enter the second number: "))
 
-Example Output:
+                if n==1:
+                    print(f"Sum of {n1} and {n2} gives {n1+n2}")
+                elif n==2:
+                    print(f"Difference of {n1} and {n2} gives {n1-n2}")
+                elif n==3:
+                    print(f"Product of {n1} and {n2} gives {n1*n2}")
+                elif n==4:
+                    try:
+                        result = n1 / n2
+                        print(f"Division of {n1} by {n2} is {result}")
+                    except ZeroDivisionError as e:
+                        print("Dividing by zero is not allowed.")
+                        logging.error(f"ZeroDivisionError occurred: {e}")
+            else:
+                if n==5:
+                    break
+                else:
+                    print("Invalid choice. Please enter a number from 1 to 5.")
+        except ValueError as e:
+            print("Please enter numerical values")
+            logging.error(f"ValueError occurred: {e}")
 
-plaintext
-Copy code
-Enter the first number: abc Invalid input! Please enter a valid number.
-Step 3: Division with Exception Handling
-Handle the following exceptions specifically for the division operation:
 
-ZeroDivisionError: Print a friendly message when dividing by zero.
-ValueError: Ensure the inputs are numbers.
-Example Output:
-
-plaintext
-Copy code
-Enter the first number: 10 Enter the second number: 0 Oops! Division by zero is not allowed.
-Step 4: Logging Errors (Bonus)
-Use the logging module to log errors to a file named error_log.txt whenever an exception occurs.
-Example Log Entry:
-
-plaintext
-Copy code
-ERROR:root:ZeroDivisionError occurred: division by zero.
-Step 5: User-Friendly Interface
-Enhance the program with the following features:
-
-Clear prompts and instructions.
-A try...except...else...finally structure to ensure robustness.
-Informative error messages for each exception.
-Example Run:
-
-plaintext
-Copy code
-Welcome to the Error-Free Calculator! Choose an operation: 1. Addition 2. Subtraction 3. Multiplication 4. Division 5. Exit > 4 Enter the first number: 10 Enter the second number: 0 Oops! Division by zero is not allowed. Choose an operation: 5 Goodbye!
-'''
+main()

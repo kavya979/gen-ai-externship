@@ -1,40 +1,41 @@
-'''
-Step 1: Create the Inventory
-
-Start with an empty dictionary called inventory.
-Each key in the dictionary will represent an item name, and the value will be a tuple containing the quantity and price.
-Example:
-
-inventory =
-{
-"apple": (10, 2.5),
-"banana": (20, 1.2)
+# Inventory Manager Program
+# Step 1: Create the inventory
+inventory = {
+    "pen":(30,5.0),
+    "notebook":(15,20.0)
 }
-Step 2: Add, Remove, and Update Items
+# Display inventory
+print("\n Current inventory")
+for i, (q,p) in inventory.items():
+    print(f"Item: {i}, Quantity: {q}, Price: ${p}")
+total=sum(q*p for q,p in inventory.values())
+print(f"Total value of inventory: ${total:2f}")
 
-Add functionality to:
-Add a new item to the inventory (e.g., "mango": (15, 3.0)).
-Remove an item from the inventory.
-Update the quantity or price of an existing item.
-Step 3: Display the Inventory
-Write a loop to display all items in the inventory in a friendly format. For example:
+# Step 2: Add,Remove, Update Items
+i=input("Enter item name to add: ").lower()
+q = int(input(f"Enter quantity of {i}: "))
+p = float(input(f"Enter price of {i}: "))
+inventory[i] = (q, p)
+print(f"{i.capitalize()} added successfully!")
 
-Item: apple, Quantity: 10, Price: $2.5
-Item: banana, Quantity: 20, Price: $1.2
-Step 4: Bonus - Calculate Total Value
-Add a feature to calculate and display the total value of the inventory by multiplying the quantity and price of each item.
+i = input("Enter item name to remove: ").lower()
+if i in inventory:
+    del inventory[i]
+    print(f"{i.capitalize()} removed from inventory.")
+else:
+    print("Item not found.")
 
-Example Run:
+i = input("Enter item name to update: ").lower()
+if i in inventory:
+    q = int(input("Enter new quantity: "))
+    p = float(input("Enter new price: "))
+    inventory[i] = (q, p)
+    print(f"{i.capitalize()} updated successfully!")
+else:
+    print("Item not found.")
 
-Welcome to the Inventory Manager!
-Current inventory:
-Item: apple, Quantity: 10, Price: $2.5
-Item: banana, Quantity: 20, Price: $1.2
-Adding a new item: mango
-Updated inventory:
-Item: apple, Quantity: 10, Price: $2.5
-Item: banana, Quantity: 20, Price: $1.2
-Item: mango, Quantity: 15, Price: $3.0
-Total value of inventory: $90.0
-Make sure your program is interactive, user-friendly, and easy to use. Add comments to explain your code for bonus clarity!
-'''
+print("\nUpdated Inventory:")
+for i, (q,p) in inventory.items():
+    print(f"Item: {i}, Quantity: {q}, Price: ${p}")
+total=sum(q*p for q,p in inventory.values())
+print(f"Total value of inventory: ${total:.2f}")

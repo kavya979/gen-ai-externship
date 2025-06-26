@@ -1,36 +1,60 @@
-'''
-Step 1: Menu of Recursive Functions
-Create a program that presents a menu of choices:
+import turtle
+def factorial(n):
+    if n==1 or n==0:
+        return 1
+    else:
+        return n * factorial(n-1)
+def fibonacci(k):
+    if k ==0:
+        return 0
+    elif k == 1:
+        return 1
+    else:
+        return fibonacci(k-1)+ fibonacci(k-2)
 
-Calculate the factorial of a number.
-Find the nth Fibonacci number.
-Draw a recursive fractal pattern (bonus).
-Exit.
-The user should select an option by entering a number.
+def fractal_pattern():
+    screen = turtle.Screen()
+    screen.bgcolor("white")
 
-Step 2: Factorial Function
-Implement a recursive function to calculate the factorial of a number and display the result.
-Example Run:
+    pen = turtle.Turtle()
+    pen.color("green")
+    pen.left(90)
+    pen.speed("fastest")
 
-plaintext
-Copy code
-Enter a number to find its factorial: 5 The factorial of 5 is 120.
-Step 3: Fibonacci Function
-Implement a recursive function to calculate the nth Fibonacci number and display the result.
-Example Run:
+    def draw_tree(branch_length):
+        if branch_length < 10:
+            return
+        pen.forward(branch_length)
+        pen.right(30)
+        draw_tree(branch_length - 15)
+        pen.left(60)
+        draw_tree(branch_length - 15)
+        pen.right(30)
+        pen.backward(branch_length)
 
-Enter the position of the Fibonacci number: 7 The 7th Fibonacci number is 13.
-Step 4: Recursive Fractal Pattern (Bonus)
-Using the turtle library, create a recursive function to draw a fractal pattern (e.g., a tree or snowflake).
-Example Run: A simple fractal tree drawing! 🌳
+    pen.penup()
+    pen.goto(0, -150)
+    pen.pendown()
+    draw_tree(60)
 
-Step 5: User-Friendly Program
-Enhance the program with the following features:
+    print("A fractal tree drawing!")
+    screen.exitonclick()
 
-Input validation (e.g., check for positive integers).
-Friendly prompts and error messages.
-Comments explaining the purpose of each function.
-Example Run:
 
-Welcome to the Recursive Artistry Program! Choose an option: 1. Calculate Factorial 2. Find Fibonacci 3. Draw a Recursive Fractal 4. Exit > 1 Enter a number to find its factorial: 5 The factorial of 5 is 120.
-'''
+def main():
+    while True:
+        n = int(input("Enter the Menu option: \n1. Calculate Factorial \n2. Find Fibonacci \n3. Draw a Recursive Fractal \n4.Exit \n"))
+        if n==1:
+            n=int(input("Enter a number:"))
+            print(f"Factorial is {n} is {factorial(n)}.")
+        elif n==2:
+            n=int(input("Enter a number:"))
+            print(f"The {n}th Fibonacci number is {fibonacci(n)}.")
+        elif n==3:
+            fractal_pattern()
+        elif n==4:
+            print("Goodbye")
+            break
+        else:
+            print("Invalid choice. Please enter a number from 1 to 4.")
+main()
